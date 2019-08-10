@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:shared="clr-namespace:LibVLCSharp.Forms.Shared;assembly=LibVLCSharp.Forms"
+             x:Class="DVRMobile.Views.ChannelFieldGrid">
+  <ContentView.Content>
+        <Grid Margin="1" BackgroundColor="#555555">
+            <Label x:Name="txt"></Label>
+            <shared:VideoView x:Name="videoView"/>
+            <Button x:Name="channelFieldButton" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Clicked="ChannelFieldButton_Clicked">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsActiveChannel}" Value="True" TargetType="Button">
+                                <Setter Property="BorderColor" Value="Blue"></Setter>
+                                <Setter Property="BorderWidth" Value="2"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

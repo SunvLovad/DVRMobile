@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControl="clr-namespace:DVRMobile.CustomRenderers"
+             xmlns:trans="clr-namespace:DVRMobile.Internationalization"
+             mc:Ignorable="d"
+             x:Class="DVRMobile.Views.ServerChannelPage">
+
+    <NavigationPage.TitleView>
+        <Grid Margin="0,0,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="ImageButton">
+                    <Style.Triggers>
+                        <Trigger TargetType="ImageButton" Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.6"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <customControl:MyBackButton x:Name="backButton" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand"></customControl:MyBackButton>
+            <Label Text="{Binding Title}" Grid.Column="1" TextColor="White" FontSize="Medium" VerticalOptions="CenterAndExpand" Margin="25,0,0,0"></Label>
+            <ImageButton Grid.Column="2" Source="ok_icon.png" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Clicked="Save_Clicked" />
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        
+        <StackLayout>
+            
+            <StackLayout Orientation="Horizontal" Padding="0,5,10,5" Margin="-10,0,0,0">
+                <SearchBar TextChanged="SearchBar_TextChanged" HorizontalOptions="FillAndExpand" HeightRequest="25"></SearchBar>
+            </StackLayout>
+
+            <Grid BackgroundColor="#dddddd" Padding="15,5,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{trans:StringResources CHANNEL_NAME}" TextColor="#333333" FontSize="15" FontAttributes="Bold" VerticalOptions="CenterAndExpand"></Label>
+                <customControl:ToggleButton Grid.Column="1" ActiveImagePath="checked_icon.png" NormalImagePath="uncheck_icon.png" IsActive="{Binding IsCheckAllChannel}" BackgroundColor="Transparent" Clicked="CheckAllChannel_Clicked"></customControl:ToggleButton>
+            </Grid>
+
+            <StackLayout>
+                <Label Grid.ColumnSpan="2" Margin="0,0,15,0" HorizontalOptions="EndAndExpand" FontSize="13" TextColor="#555555" Text="{Binding ChannelCheckedText}"></Label>
+            </StackLayout>
+
+            <Label BackgroundColor="#dddddd" HeightRequest="1"></Label>
+
+            <ListView ItemsSource="{Binding ListChannelDisplay}" ItemTapped="ListView_ItemTapped" RowHeight="56" Margin="0,-5,0,9">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="15,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding ChannelName}" FontSize="14" TextColor="#333333"></Label>
+                                <Label Text="{Binding ChannelDesc}" Grid.Row="1" FontSize="11" TextColor="#777777"></Label>
+                                <customControl:ToggleButton Grid.RowSpan="2" Grid.Column="1" ActiveImagePath="checked_icon.png" NormalImagePath="uncheck_icon.png" IsActive="{Binding IsChecked}" BackgroundColor="Transparent" Clicked="CheckChannel_Clicked"></customControl:ToggleButton>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

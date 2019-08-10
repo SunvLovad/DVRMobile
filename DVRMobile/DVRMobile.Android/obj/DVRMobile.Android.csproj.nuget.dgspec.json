@@ -1,0 +1,196 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile.Android\\DVRMobile.Android.csproj": {}
+  },
+  "projects": {
+    "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile.Android\\DVRMobile.Android.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile.Android\\DVRMobile.Android.csproj",
+        "projectName": "DVRMobile.Android",
+        "projectPath": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile.Android\\DVRMobile.Android.csproj",
+        "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
+        "outputPath": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile.Android\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "monoandroid90"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "monoandroid90": {
+            "projectReferences": {
+              "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\DVRMobile.csproj": {
+                "projectPath": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\DVRMobile.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "monoandroid90": {
+          "dependencies": {
+            "CarouselView": {
+              "target": "Package",
+              "version": "[7.0.3.1, )"
+            },
+            "LibVLCSharp": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "LibVLCSharp.Forms": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "Plugin.Multilingual": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "VideoLAN.LibVLC.Android": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Xam.Plugins.Settings": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Xamarin.Android.Support.Core.Utils": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.CustomTabs": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.Design": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.v4": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.v7.AppCompat": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.v7.CardView": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Android.Support.v7.MediaRouter": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[4.1.0.618606, )"
+            }
+          }
+        }
+      }
+    },
+    "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\DVRMobile.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\DVRMobile.csproj",
+        "projectName": "DVRMobile",
+        "projectPath": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\DVRMobile.csproj",
+        "packagesPath": "C:\\Users\\tranv\\.nuget\\packages\\",
+        "outputPath": "D:\\LOVAD_Projects\\mystic\\DVRMobile\\DVRMobile\\DVRMobile\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tranv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "CarouselView": {
+              "target": "Package",
+              "version": "[7.0.3.1, )"
+            },
+            "LibVLCSharp.Forms": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "Plugin.Multilingual": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Xam.Plugins.Settings": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[4.1.0.618606, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DVRMobile.Views.SearchPage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             xmlns:trans="clr-namespace:DVRMobile.Internationalization"
+             xmlns:customControl="clr-namespace:DVRMobile.CustomRenderers">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <customControl:MySearchBar x:Name="searchTextBox" TextChanged="SearchTextBox_TextChanged" SearchButtonPressed="SearchTextBox_SearchButtonPressed" BackgroundColor="#2196f3" CancelButtonColor="White" PlaceholderColor="#eeeeee" TextColor="White" Placeholder="{trans:StringResources SEARCH_PLACEHOLDER}"></customControl:MySearchBar>
+            <ListView x:Name="suggestionsListView" ItemTapped="SuggestionsListView_ItemTapped"></ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

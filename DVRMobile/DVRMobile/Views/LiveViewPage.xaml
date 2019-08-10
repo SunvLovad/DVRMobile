@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DVRMobile.Views.LiveViewPage"
+             xmlns:controls="clr-namespace:CarouselView.Controls.CarouselLayout;assembly=CarouselView"
+             xmlns:views="clr-namespace:DVRMobile.Views"
+             xmlns:customControl="clr-namespace:DVRMobile.CustomRenderers"
+             NavigationPage.HasNavigationBar="{Binding HasNavigationBar}"
+             BackgroundColor="#eeeeee"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="search_icon.png" Clicked="Search_Clicked" />
+        <ToolbarItem IconImageSource="server_icon.png" Clicked="ServerPage_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition> <!-- Channel Panel -->
+                <RowDefinition Height="1"></RowDefinition> <!-- Line -->
+                <RowDefinition Height="{Binding ChannelControlHeight}"></RowDefinition> <!-- Channel Control -->
+                <RowDefinition Height="1"></RowDefinition> <!-- Line -->
+                <RowDefinition Height="{Binding FooterControlHeight}"></RowDefinition> <!-- Footer Control -->
+            </Grid.RowDefinitions>
+            
+            <Grid.Resources>
+                <Style TargetType="Button" x:Key="buttonStyle">
+                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                    <Setter Property="BorderColor" Value="#666666"></Setter>
+                    <Setter Property="TextColor" Value="#666666"></Setter>
+                    <Setter Property="BorderWidth" Value="1"></Setter>
+                    <Setter Property="FontSize" Value="{Binding FooterControlFontSize}"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="MinimumWidthRequest" Value="0"></Setter>
+                    <Setter Property="MinimumHeightRequest" Value="0"></Setter>
+                    <Setter Property="Margin" Value="4,0,4,4"></Setter>
+                    <Style.Triggers>
+                        <Trigger TargetType="Button" Property="IsTabStop" Value="True">
+                            <Setter Property="BackgroundColor" Value="#2196f3"></Setter>
+                            <Setter Property="TextColor" Value="White"></Setter>
+                            <Setter Property="BorderColor" Value="#000000"></Setter>
+                        </Trigger>
+                        <Trigger TargetType="Button" Property="IsFocused" Value="True">
+                            <Setter Property="BorderColor" Value="#2196f3"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key="imageButtonStyle" TargetType="Button">
+                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                    <Setter Property="BorderColor" Value="Transparent"></Setter>
+                    <Setter Property="TextColor" Value="#666666"></Setter>
+                    <Setter Property="BorderWidth" Value="1"></Setter>
+                    <Setter Property="FontSize" Value="{Binding FooterControlFontSize}"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="MinimumWidthRequest" Value="0"></Setter>
+                    <Setter Property="MinimumHeightRequest" Value="0"></Setter>
+                    <Setter Property="Margin" Value="4,0,4,4"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" TargetType="Button" Value="False">
+                            <Setter Property="Opacity" Value="0.6"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            
+            <!-- Channel Panel - Begin -->
+            <controls:CarouselLayout Orientation="Horizontal" ItemsSource="{Binding ChannelPanelList}" SelectedIndex="{Binding CurrentPanelIndex}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.RowSpan="{Binding CarouselLayoutRowSpan}">
+                <controls:CarouselLayout.ItemTemplate>
+                    <DataTemplate>
+                        <views:ChannelPanelContentView BindingContext="{Binding .}" />
+                    </DataTemplate>
+                </controls:CarouselLayout.ItemTemplate>
+            </controls:CarouselLayout>
+            <!-- Channel Panel - End -->
+            
+            <!-- Line Begin -->
+            <Label Grid.Row="1" BackgroundColor="#cccccc" IsVisible="{Binding IsVerticalDevice}"></Label>
+            <!-- Line End -->
+
+            <!-- Channel Control - Begin -->
+            <FlexLayout Grid.Row="2" JustifyContent="SpaceBetween" Padding="8,7,8,3" Margin="0,-5,0,-5" BackgroundColor="White" IsVisible="{Binding IsVerticalDevice}">
+                <customControl:ToggleButton NormalImagePath="playback_icon.png" ActiveImagePath="playback_active_icon.png" IsActive="{Binding IsActivePlaybackChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle}" />
+                <customControl:ToggleButton NormalImagePath="swap_channel_icon.png" ActiveImagePath="swap_channel_active_icon.png" IsActive="{Binding IsActiveSwapChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle}" />
+                <customControl:ToggleButton NormalImagePath="fullscreen_icon.png" ActiveImagePath="fullscreen_active_icon.png" IsActive="{Binding IsFullScreenChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle}" />
+                <Button Image="delete_icon.png" Command="{Binding RemoveChannelCommand}" IsEnabled="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle}" />
+            </FlexLayout>
+            <!-- Channel Control - End -->
+
+            <!-- Line Begin -->
+            <Label Grid.Row="3" BackgroundColor="#cccccc"></Label>
+            <!-- Line End -->
+
+            <!-- Footer Control Vertical - Begin -->
+            <Grid Grid.Row="4" Padding="8,3,8,3" Margin="0,0,0,0" BackgroundColor="#eeeeee" IsVisible="{Binding IsVerticalDevice}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="1" Grid.Column="0" Command="{Binding DivisionClicked}" CommandParameter="1" IsTabStop="{Binding IsSelectedDivision1}" Style="{StaticResource buttonStyle}"></Button>
+                <Button Text="4" Grid.Column="1" Command="{Binding DivisionClicked}" CommandParameter="4" IsTabStop="{Binding IsSelectedDivision4}" Style="{StaticResource buttonStyle}"></Button>
+                <Button Text="9" Grid.Column="2" Command="{Binding DivisionClicked}" CommandParameter="9" IsTabStop="{Binding IsSelectedDivision9}" Style="{StaticResource buttonStyle}"></Button>
+
+                <Label Text="{Binding CurrentPanelIndexLabel}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"></Label>
+
+                <Button Text="16" Grid.Column="4" Command="{Binding DivisionClicked}" CommandParameter="16" IsTabStop="{Binding IsSelectedDivision16}" Style="{StaticResource buttonStyle}"></Button>
+                <Button Text="36" Grid.Column="5" Command="{Binding DivisionClicked}" CommandParameter="36" IsTabStop="{Binding IsSelectedDivision36}" Style="{StaticResource buttonStyle}"></Button>
+                <Button Text="64" Grid.Column="6" Command="{Binding DivisionClicked}" CommandParameter="64" IsTabStop="{Binding IsSelectedDivision64}" Style="{StaticResource buttonStyle}"></Button>
+
+            </Grid>
+            <!-- Footer Control Vertical - End -->
+
+            <!-- Footer Control Horizontal - Begin -->
+            <Grid Grid.Row="4" Margin="0,-5,0,0" BackgroundColor="#ffffff" IsVisible="{Binding IsHorizontalDevice}">
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+
+                        <StackLayout.Resources>
+                            <Style TargetType="Button" x:Key="buttonStyle2" BasedOn="{StaticResource buttonStyle}">
+                                <Setter Property="HeightRequest" Value="30"></Setter>
+                                <Setter Property="WidthRequest" Value="50"></Setter>
+                            </Style>
+
+                            <Style TargetType="Button" x:Key="imageButtonStyle2" BasedOn="{StaticResource imageButtonStyle}">
+                                <Setter Property="HeightRequest" Value="30"></Setter>
+                                <Setter Property="WidthRequest" Value="50"></Setter>
+                                <Setter Property="Margin" Value="0,0,0,4"></Setter>
+                            </Style>
+                        </StackLayout.Resources>
+
+                        <StackLayout Padding="8,8,8,2" Orientation="Horizontal">
+                            
+                            <Button Text="1" Command="{Binding DivisionClicked}" CommandParameter="1" IsTabStop="{Binding IsSelectedDivision1}" Style="{StaticResource buttonStyle2}"></Button>
+                            <Button Text="4" Command="{Binding DivisionClicked}" CommandParameter="4" IsTabStop="{Binding IsSelectedDivision4}" Style="{StaticResource buttonStyle2}"></Button>
+                            <Button Text="9" Command="{Binding DivisionClicked}" CommandParameter="9" IsTabStop="{Binding IsSelectedDivision9}" Style="{StaticResource buttonStyle2}"></Button>
+
+                            <Label Text="{Binding CurrentPanelIndexLabel}" HorizontalTextAlignment="Center" VerticalOptions="Center" WidthRequest="60"></Label>
+
+                            <Button Text="16" Command="{Binding DivisionClicked}" CommandParameter="16" IsTabStop="{Binding IsSelectedDivision16}" Style="{StaticResource buttonStyle2}"></Button>
+                            <Button Text="36" Command="{Binding DivisionClicked}" CommandParameter="36" IsTabStop="{Binding IsSelectedDivision36}" Style="{StaticResource buttonStyle2}"></Button>
+                            <Button Text="64" Command="{Binding DivisionClicked}" CommandParameter="64" IsTabStop="{Binding IsSelectedDivision64}" Style="{StaticResource buttonStyle2}"></Button>
+
+                        </StackLayout>
+                        
+                        <Label WidthRequest="1" BackgroundColor="#dddddd"></Label>
+                        
+                        <StackLayout Padding="8,8,8,2" Orientation="Horizontal">
+                            <customControl:ToggleButton NormalImagePath="extend_icon.png" ActiveImagePath="extend_active_icon.png" IsActive="{Binding IsActiveFullScreen}" Style="{StaticResource imageButtonStyle2}" />
+                            <customControl:ToggleButton NormalImagePath="playback_icon.png" ActiveImagePath="playback_active_icon.png" IsActive="{Binding IsActivePlaybackChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle2}" />
+                            <customControl:ToggleButton NormalImagePath="swap_channel_icon.png" ActiveImagePath="swap_channel_active_icon.png" IsActive="{Binding IsActiveSwapChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle2}" />
+                            <customControl:ToggleButton NormalImagePath="fullscreen_icon.png" ActiveImagePath="fullscreen_active_icon.png" IsActive="{Binding IsFullScreenChannel}" IsEnable="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle2}" />
+                            <Button Image="delete_icon.png" Command="{Binding RemoveChannelCommand}" IsEnabled="{Binding IsEnableChannelControl}" Style="{StaticResource imageButtonStyle2}" />
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!-- Footer Control Horizontal - End -->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

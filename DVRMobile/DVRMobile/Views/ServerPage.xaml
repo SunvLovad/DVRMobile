@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DVRMobile.Views.ServerPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="add_icon.png" Clicked="AddServer_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Resources>
+                <Style TargetType="ImageButton" x:Key="serverButtonStyle">
+                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                    <Setter Property="WidthRequest" Value="24"></Setter>
+                    <Setter Property="HeightRequest" Value="24"></Setter>
+                    <Style.Triggers>
+                        <Trigger TargetType="ImageButton" Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.4"></Setter>
+                        </Trigger> 
+                    </Style.Triggers>
+                </Style>
+            </StackLayout.Resources>
+            
+            <ListView x:Name="serverListView" ItemTapped="ServerListView_ItemTapped" ItemsSource="{Binding ServerList}" RowHeight="60">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="{Binding ServerName}" FontSize="14"></Label>
+                                    <Label TextColor="Green" Text="Connected" FontSize="12" IsVisible="{Binding IsConnected}"></Label>
+                                    <Label TextColor="Red" Text="Not Connected" FontSize="12" IsVisible="{Binding IsNotConnected}"></Label>
+                                    <Label TextColor="Blue" Text="Connecting..." FontSize="12" IsVisible="{Binding IsConnecting}"></Label>
+                                </StackLayout>
+
+                                <StackLayout HorizontalOptions="EndAndExpand" WidthRequest="85" Orientation="Horizontal" TabIndex="{Binding Id}">
+                                    <ImageButton Source="edit_icon.png" IsEnabled="{Binding IsEnableControl}" Clicked="EditServer_Clicked" Style="{StaticResource serverButtonStyle}"></ImageButton>
+                                    <ImageButton Source="delete_icon.png" IsEnabled="{Binding IsEnableControl}" Clicked="DeleteServer_Clicked" Style="{StaticResource serverButtonStyle}"></ImageButton>
+                                    <ImageButton Source="connect_icon.png" IsEnabled="{Binding IsEnableControl}" Clicked="ConnectServer_Clicked" Style="{StaticResource serverButtonStyle}"></ImageButton>
+                                </StackLayout>
+                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>            
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
